@@ -3,16 +3,13 @@ class Solution:
         answer=[]
         f={}
         for i in range(len(s)):
-            if s[i] not in f:
-                f[s[i]]=[i]
-            else:
-                heapq.heappush(f[s[i]],-i)
+            f[s[i]]=i
         i=0
         first=0
         last=0
         while(i<len(s)):
             if i <= last and i < len(s)-1:
-                last = max(last,-heapq.heappop(f[s[i]]))
+                last = max(last,f[s[i]])
             else:
                 answer.append(last-first+1)
                 if i == len(s)-1 and last == len(s)-1:
